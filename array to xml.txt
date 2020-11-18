@@ -1,0 +1,31 @@
+<?php
+$characters = array( array( "name" => "Peter Parker", "email" => "peterparker@mail.com", ), array( "name" => "Clark Kent", "email" => "clarkkent@mail.com", ), array( "name" => "Harry Potter", "email" => "harrypotter@mail.com", ) );
+
+$characters["name"] = "Ron Weasley";
+$characters["email"] = "ronweasley@mail.com";
+print_r ($characters);
+
+function array_to_xml($array, &$xml_user_info) {
+foreach($array as $key => $value) {
+if(is_array($value)) {
+if(!is_numeric($key)){
+$subnode = $xml_user_info->addChild("$key");
+array_to_xml($value, $subnode);
+}else{
+$subnode = $xml_user_info->addChild("item$key");
+array_to_xml($value, $subnode);
+}
+}else {
+$xml_user_info->addChild("$key",htmlspecialchars("$value"));
+}
+}
+}
+
+$xml_user_info = new SimpleXMLElement("<?xml version=\"1.0\"?><user_info></user_info>");
+
+
+array_to_xml($characters,$xml_user_info);
+
+$xml_file = $xml_user_info->asXML('characters.xml');
+
+?>
