@@ -1,8 +1,8 @@
 <?php
 $characters = array( array( "name" => "Peter Parker", "email" => "peterparker@mail.com", ), array( "name" => "Clark Kent", "email" => "clarkkent@mail.com", ), array( "name" => "Harry Potter", "email" => "harrypotter@mail.com", ) );
 
-$characters["name"] = "Ron Weasley";
-$characters["email"] = "ronweasley@mail.com";
+$characters["name"] = "Professor Snape";
+$characters["email"] = "snape@mail.com";
 print_r ($characters);
 
 function array_to_xml($array, &$xml_user_info) {
